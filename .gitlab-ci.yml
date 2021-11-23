@@ -1,0 +1,28 @@
+default:
+  image: 
+    name: hashicorp/terraform:1.0.11
+    entrypoint: [""]
+
+  cache:
+    key: terraform-azurerm-smartoffice
+    paths:
+      - .terraform
+
+services:
+  - docker:dind
+
+stages:
+  - prepare
+  - validate
+
+terraform:init:
+    stage: prepare
+    script:
+    - cp ${TERRAFORMRC} ~/.terraformrc
+    - terraform init
+
+
+terraform:validate:
+  stage: validate
+  script:
+    - terraform validate
