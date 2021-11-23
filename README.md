@@ -1,6 +1,6 @@
 # How to Use
 
-Create a 'application.tf' file like this:
+Create 'application.tf' file like this:
 
 ```hcl
 module "testwebapp" {
