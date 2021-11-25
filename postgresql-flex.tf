@@ -32,33 +32,33 @@ resource "azurerm_postgresql_flexible_server" "main" {
 
 ## PostgreSQL Config
 resource "azurerm_postgresql_flexible_server_configuration" "pg_qs_query_capture_mode" {
-  name                = "pg_qs.query_capture_mode"
-  server_id         = azurerm_postgresql_flexible_server.main.id
-  value               = "ALL"
+  name      = "pg_qs.query_capture_mode"
+  server_id = azurerm_postgresql_flexible_server.main.id
+  value     = "ALL"
 }
 
 resource "azurerm_postgresql_flexible_server_configuration" "pgms_wait_sampling_query_capture_mode" {
-  name                = "pgms_wait_sampling.query_capture_mode"
-  server_id         = azurerm_postgresql_flexible_server.main.id
-  value               = "ALL"
+  name      = "pgms_wait_sampling.query_capture_mode"
+  server_id = azurerm_postgresql_flexible_server.main.id
+  value     = "ALL"
 }
 
 ## Firewall List
 resource "azurerm_postgresql_flexible_server_firewall_rule" "list" {
-  for_each            = var.postgresql_firewall_list
-  name                = each.key
-  start_ip_address    = each.value
-  end_ip_address      = each.value
-  server_id         = azurerm_postgresql_flexible_server.main.id
+  for_each         = var.postgresql_firewall_list
+  name             = each.key
+  start_ip_address = each.value
+  end_ip_address   = each.value
+  server_id        = azurerm_postgresql_flexible_server.main.id
 }
 
 ## Databases
-resource "azurerm_postgresql_flexible_server_database" "main" {
-  name                = var.postgresql_database_main_name
-  server_id         = azurerm_postgresql_flexible_server.main.id
-  charset             = var.postgresql_database_main_charset
-  collation           = var.postgresql_database_main_collation
-}
+#resource "azurerm_postgresql_flexible_server_database" "main" {
+#  name      = var.postgresql_database_main_name
+#  server_id = azurerm_postgresql_flexible_server.main.id
+#  charset   = var.postgresql_database_main_charset
+#  collation = var.postgresql_database_main_collation
+#}
 
 ## Put secrets to Azure KeyVault
 resource "azurerm_key_vault_secret" "azure-postgresql-username" {
