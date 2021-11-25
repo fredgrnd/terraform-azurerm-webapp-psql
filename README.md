@@ -43,54 +43,55 @@ module "testwebapp" {
 
 These variables must be set in the module block when using this module.
 
-**dns_resource_group_name** `string`
+#### **dns_resource_group_name** `string`
 
-Description: (Required) Specifies the resource group where the DNS Zone (parent resource) exists.Changing this forces a new resource to be created.
+*Description*: (Required) Specifies the resource group where the DNS Zone (parent resource) exists.Changing this forces a new resource to be created.
 
-**dns_zone_name** `string`
+#### **dns_zone_name** `string`
 
-Description: (Required) Specifies the DNS Zone where the resource exists. Changing this forces a new resource to be created.
+*Description*: (Required) Specifies the DNS Zone where the resource exists. Changing this forces a new resource to be created.
 
-**env** `string`
+#### **env** `string`
 
-Description: (Required) Project Environment (dev,staging,production)
+*Description*: (Required) Project Environment (dev,staging,production)
 
-**postgresql_firewall_list** `map(any)`
+#### **postgresql_firewall_list** `map(any)`
 
-Description: (Required) Specifies a list of IP
+*Description*: (Required) Specifies a list of IP
 
-**project_name** `string``
+#### **project_name** `string``
 
-Description: (Required) Project Name
+*Description*: (Required) Project Name
 
-**tags** `map(any)`
+#### **tags** `map(any)`
 
-Description: (Optional) A mapping of tags to assign to the resource.
+*Description*: (Optional) A mapping of tags to assign to the resource.
 
-**webapp_hostname** `string`
+#### **webapp_hostname** `string`
 
-Description: (Required) Specifies the Custom Hostname to use for the App Service, example www.example.com. Changing this forces a new resource to be created.
+*Description*: (Required) Specifies the Custom Hostname to use for the App Service, example www.example.com. Changing this forces a new resource to be created.
 
 ### Optional Inputs
 
 These variables have default values and don't have to be set to use this module. You may set these variables to override their default values.
 
-**app_service_plan_size** `string`
-Description: (Required) Specifies the plan's instance size.
+#### **app_service_plan_size** `string`
 
-Default: "P2v2"
+*Description*: (Required) Specifies the plan's instance size.
 
-**app_service_plan_tier** `string`
+Default: `"P2v2"`
 
-Description: (Required) Specifies the plan's pricing tier.
+#### **app_service_plan_tier** `string`
 
-Default: "PremiumV2"
+*Description*: (Required) Specifies the plan's pricing tier.
 
-**dns_ttl** `string`
+Default: `"PremiumV2"`
 
-Description: (Required) The Time To Live (TTL) of the DNS record in seconds.
+#### **dns_ttl** `string`
 
-Default: "300"
+*Description*: (Required) The Time To Live (TTL) of the DNS record in seconds.
+
+Default: `"300"`
 
 **location** `string`
 
