@@ -1,6 +1,6 @@
 resource "azurerm_app_service" "main" {
   depends_on = [
-    azurerm_postgresql_server.main,
+    azurerm_postgresql_flexible_server.main,
   ]
   name                = "${var.project_name}-${var.env}-wa"
   location            = azurerm_resource_group.main.location
@@ -18,11 +18,11 @@ resource "azurerm_app_service" "main" {
   app_settings = merge(
     var.webapp_main_app_settings,
     {
-      POSTGRES_USER            = "${azurerm_postgresql_server.main.administrator_login}@${azurerm_postgresql_server.main.name}"
-      POSTGRES_HOST            = azurerm_postgresql_server.main.fqdn
-      POSTGRES_PASSWORD        = azurerm_postgresql_server.main.administrator_login_password
-      POSTGRES_PORT            = "5432"
-      POSTGRES_DB              = azurerm_postgresql_database.main.name
+      POSTGRES_USER     = "${azurerm_postgresql_flexible_server.main.administrator_login}@${azurerm_postgresql_flexible_server.main.name}"
+      POSTGRES_HOST     = azurerm_postgresql_flexible_server.main.fqdn
+      POSTGRES_PASSWORD = azurerm_postgresql_flexible_server.main.administrator_password
+      POSTGRES_PORT     = "5432"
+      POSTGRES_DB       = azurerm_postgresql_flexible_server.main.name
     }
   )
 

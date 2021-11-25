@@ -95,23 +95,18 @@ variable "dns_ttl" {
 
 ## PostgreSQL
 variable "postegresql_sku_name" {
-  description = "(Required) Specifies the SKU Name for this PostgreSQL Server. The name of the SKU, follows the tier + family + cores pattern (e.g. B_Gen4_1, GP_Gen5_8). For more information see the product documentation."
-  default     = "B_Gen5_2"
+  description = "(Optional) The SKU Name for the PostgreSQL Flexible Server. The name of the SKU, follows the tier + name pattern (e.g. B_Standard_B1ms, GP_Standard_D2s_v3, MO_Standard_E4s_v3)"
+  default     = "B_Standard_B1ms"
 }
 
 variable "postgresql_storage_mb" {
   description = "(Optional) Max storage allowed for a server. Possible values are between 5120 MB(5GB) and 1048576 MB(1TB) for the Basic SKU and between 5120 MB(5GB) and 16777216 MB(16TB) for General Purpose/Memory Optimized SKUs. For more information see the product documentation."
-  default     = "5120"
+  default     = "32768"
 }
 
 variable "postgresql_backup_retention_day" {
   description = "(Optional) Backup retention days for the server, supported values are between 7 and 35 days."
   default     = "7"
-}
-
-variable "postgresql_geo_redundant_backup_enabled" {
-  description = "Optional) Turn Geo-redundant server backups on/off. This allows you to choose between locally redundant or geo-redundant backup storage in the General Purpose and Memory Optimized tiers. When the backups are stored in geo-redundant backup storage, they are not only stored within the region in which your server is hosted, but are also replicated to a paired data center. This provides better protection and ability to restore your server in a different region in the event of a disaster. This is not support for the Basic tier. Changing this forces a new resource to be created."
-  default     = "false"
 }
 
 variable "postgresql_version" {
