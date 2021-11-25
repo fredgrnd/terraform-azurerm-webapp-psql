@@ -10,7 +10,7 @@ Create `main.tf` file like this:
 module "testwebapp" {
   source = "app.terraform.io/FredGRND/webapp-psql/azurerm"
 
-  version = "~> 0.0.2"
+  version = "~> 0.0.5"
 
   env          = "lab"
   project_name = "testwebapp"
@@ -69,7 +69,7 @@ These variables must be set in the module block when using this module.
 
 #### **webapp_hostname** `string`
 
-*Description*: (Required) Specifies the Custom Hostname to use for the App Service, example www.example.com. Changing this forces a new resource to be created.
+*Description*: (Required) Specifies the Custom Hostname to use for the App Service, example `www.example.com`. Changing this forces a new resource to be created.
 
 ### Optional Inputs
 
@@ -93,109 +93,110 @@ Default: `"PremiumV2"`
 
 Default: `"300"`
 
-**location** `string`
+#### **location** `string`
 
-Description: (Required) The Azure Region where the Resource Group should exist. Changing this forces a new Resource Group to be created.
+*Description*: (Required) The Azure Region where the Resource Group should exist. Changing this forces a new Resource Group to be created.
 
-Default: "francecentral"
+Default: `"francecentral"`
 
-**postgresql_sku_name** `string`
+#### **postgresql_sku_name** `string`
 
-Description: (Optional) The SKU Name for the PostgreSQL Flexible Server. The name of the SKU, follows the tier + name pattern (e.g. `B_Standard_B1ms`, `GP_Standard_D2s_v3`, `MO_Standard_E4s_v3`)
+*Description*: (Optional) The SKU Name for the PostgreSQL Flexible Server. The name of the SKU, follows the tier + name pattern (e.g. `B_Standard_B1ms`, `GP_Standard_D2s_v3`, `MO_Standard_E4s_v3`)
 
-Default: "B_Standard_B1ms"
+Default: `"B_Standard_B1ms"`
 
-**postgresql_backup_retention_day** `string`
+#### **postgresql_backup_retention_day** `string`
 
-Description: (Optional) Backup retention days for the server, supported values are between `7` and `35` days.
+*Description*: (Optional) Backup retention days for the server, supported values are between `7` and `35` days.
 
-Default: "7"
+Default: `"7"`
 
-**postgresql_database_main_charset** `string`
+#### **postgresql_database_main_charset** `string`
 
-Description: (Required) Specifies the Charset for the PostgreSQL Database, which needs to be a valid PostgreSQL Charset. Changing this forces a new resource to be created.
+*Description*: (Optional) Specifies the Charset for the PostgreSQL Database, which needs to be a valid PostgreSQL Charset. Changing this forces a new resource to be created.
 
-Default: "UTF8"
+Default: `"UTF8"`
 
-**postgresql_database_main_collation** `string`
+#### **postgresql_database_main_collation** `string`
 
-Description: (Required) Specifies the Collation for the PostgreSQL Database, which needs to be a valid PostgreSQL Collation. Note that Microsoft uses different notation - en-US instead of en_US. Changing this forces a new resource to be created.
+*Description*: (Optional) Specifies the Collation for the PostgreSQL Database, which needs to be a valid PostgreSQL Collation. Note that Microsoft uses different notation - en-US instead of en_US. Changing this forces a new resource to be created.
 
-Default: "English_United States.1252"
+Default: `"English_United States.1252"`
 
-**postgresql_database_main_name** `string`
+#### **postgresql_database_main_name** `string`
 
-Description: (Required) Specifies the name of the PostgreSQL Database, which needs to be a valid PostgreSQL identifier. Changing this forces a new resource to be created.
+*Description*: (Optional) Specifies the name of the PostgreSQL Database, which needs to be a valid PostgreSQL identifier. Changing this forces a new resource to be created.
 
-Default: "smart"
+Default: `"smart"`
 
-**postgresql_storage_mb** `string`
+#### **postgresql_storage_mb** `string`
 
-Description: (Optional) The max storage allowed for the PostgreSQL Flexible Server. Possible values are `32768`, `65536`, `131072`, `262144`, `524288`, `1048576`, `2097152`, `4194304`, `8388608`, `16777216`, and `33554432`.
+*Description*: (Optional) The max storage allowed for the PostgreSQL Flexible Server. Possible values are `32768`, `65536`, `131072`, `262144`, `524288`, `1048576`, `2097152`, `4194304`, `8388608`, `16777216`, and `33554432`.
 
-Default: "32768"
+Default: `"32768"`
 
-**postgresql_version** `string`
-Description: (Optional) The version of PostgreSQL Flexible Server to use. Possible values are `11`,`12` and `13`. Required when create_mode is Default. Changing this forces a new PostgreSQL Flexible Server to be created.
+#### **postgresql_version** `string`
 
-Default: "11"
+*Description*: (Optional) The version of PostgreSQL Flexible Server to use. Possible values are `11`,`12` and `13`. Required when create_mode is Default. Changing this forces a new PostgreSQL Flexible Server to be created.
 
-**webapp_app_service_slot_name** `string`
+Default: `"11"`
 
-Description: (Required) The name of the App Service Slot which should be promoted to the Production Slot within the App Service.
+#### **webapp_app_service_slot_name** `string`
 
-Default: "maintenance"
+*Description*: (Required) The name of the App Service Slot which should be promoted to the Production Slot within the App Service.
 
-**webapp_logs_retention_in_days** `string`
+Default: `"maintenance"`
 
-Description: (Required) The number of days to retain logs for.
+#### **webapp_logs_retention_in_days** `string`
 
-Default: "7"
+*Description*: (Required) The number of days to retain logs for.
 
-**webapp_logs_retention_in_mb** `string`
+Default: `"7"`
 
-Description: (Required) The maximum size in megabytes that http log files can use before being removed.
+#### **webapp_logs_retention_in_mb** `string`
 
-Default: "30"
+*Description*: (Required) The maximum size in megabytes that http log files can use before being removed.
 
-**webapp_main_app_settings** `map`
+Default: `"30"`
+
+#### **webapp_main_app_settings** `map`
 
 Description: (Optional) A key-value pair of App Settings for main slot.
 
-Default: {}
+Default: `{}`
 
-**webapp_main_site_config_app_command_line** `string`
+#### **webapp_main_site_config_app_command_line** `string`
 
-Description: (Optional) App command line to launch, e.g. /sbin/myserver -b 0.0.0.0 for main slot
+*Description*: (Optional) App command line to launch, e.g. /sbin/myserver -b 0.0.0.0 for main slot
 
-Default: ""
+Default: `""`
 
-**webapp_main_site_config_linux_fx_version** `string`
+#### **webapp_main_site_config_linux_fx_version** `string`
 
-Description: (Optional) Linux App Framework and version for the App Service for main slot
+*Description*: (Optional) Linux App Framework and version for the App Service for main slot
 
-Default: ""
+Default: `""`
 
-**webapp_main_site_config_number_of_workers** `string`
+#### **webapp_main_site_config_number_of_workers** `string`
 
-Description: (Optional) The scaled number of workers (for per site scaling) of this App Service.
+*Description*: (Optional) The scaled number of workers (for per site scaling) of this App Service.
 
-Default: "2"
+Default: `"2"`
 
-**webapp_maintenance_app_settings** `map`
+#### **webapp_maintenance_app_settings** `map`
 
-Description: (Optional) A key-value pair of App Settings.
+*Description*: (Optional) A key-value pair of App Settings.
 
-Default: {}
+Default: `{}`
 
-**webapp_maintenance_site_config_app_command_line** `string`
+#### **webapp_maintenance_site_config_app_command_line** `string`
 
-Description: (Optional) App command line to launch, e.g. /sbin/myserver -b 0.0.0.0 for maintenance slot
+*Description*: (Optional) App command line to launch, e.g. /sbin/myserver -b 0.0.0.0 for maintenance slot
 
-Default: ""
+Default: `""`
 
-**webapp_maintenance_site_config_linux_fx_version** `string`
+#### **webapp_maintenance_site_config_linux_fx_version** `string`
 
-Description: (Optional) Linux App Framework and version for the App Service for maintenance slot
+*Description*: (Optional) Linux App Framework and version for the App Service for maintenance slot
 
-Default: ""
+Default: `""`
