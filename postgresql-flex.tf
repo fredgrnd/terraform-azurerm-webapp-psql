@@ -15,8 +15,8 @@ resource "random_password" "psql_password" {
 ## PostgreSQL Server
 resource "azurerm_postgresql_flexible_server" "main" {
   name                = "${var.project_name}-${var.env}-psql"
-  resource_group_name = azurerm_resource_group.main.location
-  location            = azurerm_resource_group.main.name
+  resource_group_name = azurerm_resource_group.main.name
+  location            = azurerm_resource_group.main.location
   version             = var.postgresql_version
 
   administrator_login    = random_password.psql_user.result
