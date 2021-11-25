@@ -2,6 +2,11 @@
 
 Provide an Azure Webapp with PSQL Flexible server
 
+## Required
+
+* Azure Account
+* Azure DNS zone
+
 ## How to Use
 
 Create `main.tf` file like this:
