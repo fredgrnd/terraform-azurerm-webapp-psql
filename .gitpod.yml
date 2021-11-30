@@ -5,4 +5,4 @@ tasks:
   - init: |
       echo $TERRAFORMRC > .terraformrc
     command: |
-      init
+      echo 'Started !'
